@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Bem-vindo ao Blog!</h1>
+  
+  <% posts.forEach((post) => { %>
+    <div class="post-preview">
+      <h2><a href="/post/<%= post.id %>"><%= post.titulo %></a></h2>
+      <p><small>Por <%= post.autor %> em <%= post.data %></small></p>
+      <p><%= post.conteudo.substring(0, 100) %>...</p>
+      <a href="/post/<%= post.id %>">Ler mais →</a>
+    </div>
+  <% }) %>
+</body>
+</html>
