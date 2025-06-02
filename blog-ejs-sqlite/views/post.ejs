@@ -12,9 +12,7 @@
   </header>
   <div class="container">
     <div style="margin-bottom:2rem;">
-      <div>
-        <%- post.conteudo.length > 120 ? post.conteudo.substring(0, 120) + '...' : post.conteudo %>
-      </div>
+      <%- post.conteudo %>
     </div>
     <a href="/" class="btn">Voltar para lista</a>
     <a href="/editar/<%= post.id %>" class="btn">Editar</a>
