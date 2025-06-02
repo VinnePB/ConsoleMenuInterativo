@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title><%= post.titulo %> - IsulBlog </title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1><%= post.titulo %></h1>
+    <div class="meta">por <%= post.autor %> em <%= post.data %></div>
+  </header>
+  <div class="container">
+    <div style="margin-bottom:2rem;">
+      <div>
+        <%- post.conteudo.length > 120 ? post.conteudo.substring(0, 120) + '...' : post.conteudo %>
+      </div>
+    </div>
+    <a href="/" class="btn">Voltar para lista</a>
+    <a href="/editar/<%= post.id %>" class="btn">Editar</a>
+    <form action="/deletar/<%= post.id %>" method="POST" style="display:inline;">
+      <button type="submit">Deletar</button>
+    </form>
+  </div>
+</body>
+</html>

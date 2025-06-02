@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title><%= post ? 'Editar Post' : 'Novo Post' %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1><%= post ? 'Editar Post' : 'Novo Post' %></h1>
+  </header>
+  <div class="container">
+    <form action="<%= post ? '/editar/' + post.id : '/novo' %>" method="POST">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" name="titulo" required value="<%= post ? post.titulo : '' %>">
+
+      <label for="autor">Autor:</label>
+      <input type="text" id="autor" name="autor" required value="<%= post ? post.autor : '' %>">
+
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" required value="<%= post ? post.data : '' %>">
+
+      <label for="conteudo">Conteúdo:</label>
+      <textarea id="conteudo" name="conteudo" rows="6" required><%= post ? post.conteudo : '' %></textarea>
+
+      <button type="submit"><%= post ? 'Salvar Alterações' : 'Publicar' %></button>
+      <a href="/" class="btn">Voltar</a>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fila de Atendimentos</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header', { 
+        menu: [
+            { href: '/agendamentos', label: 'Agendamentos' },
+            { href: '/clientes', label: 'Clientes' }
+        ],
+        showBack: true
+    }) %>
+    <h1>Fila de Atendimentos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Hora de Chegada</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% atendimentos.forEach(function(atendimento) { %>
+                <tr>
+                    <td><%= atendimento.clienteNome %></td>
+                    <td><%= atendimento.horaChegada %></td>
+                    <td><%= atendimento.status %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <%- include('partials/footer') %>
+</body>
+</html>

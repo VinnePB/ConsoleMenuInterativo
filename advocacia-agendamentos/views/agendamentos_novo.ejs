@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Agendamento</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header', { showMenu: true }) %>
+    <main>
+        <h1>Novo Agendamento</h1>
+        <form action="/agendamentos/criar" method="POST">
+            <label>Cliente ID: <input type="number" name="cliente_id" required></label><br>
+            <label>Advogado ID: <input type="number" name="advogado_id" required></label><br>
+            <label>Data: <input type="date" name="data" required></label><br>
+            <label>Hora: <input type="time" name="hora" required></label><br>
+            <label>Tipo: <input type="text" name="tipo"></label><br>
+            <label>Observações: <textarea name="observacoes"></textarea></label><br>
+            <label>Status: <input type="text" name="status"></label><br>
+            <button type="submit">Salvar</button>
+        </form>
+        <a href="/agendamentos">Voltar para lista de agendamentos</a>
+    </main>
+    <%- include('partials/footer') %>
+</body>
+</html>
