@@ -1,1 +1,0 @@
-// Este arquivo contém scripts JavaScript para a interação do front-end, manipulando eventos e atualizando a interface do usuário.
