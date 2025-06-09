@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2 class="mb-4">Atendimentos</h2>
+  <% if (atendimentos.length === 0) { %>
+    <div class="alert alert-info text-center">
+      Nenhum atendimento agendado.
+    </div>
+  <% } else { %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Advogado</th>
+          <th>Cliente</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Assunto</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% atendimentos.forEach(function(at) { %>
+          <tr>
+            <td><%= at.data ? new Date(at.data).toLocaleDateString('pt-BR') : '' %></td>
+            <td><%= at.hora || '' %></td>
+            <td><%= at.advogado && at.advogado.nome ? at.advogado.nome : at.advogado %></td>
+            <td><%= at.cliente && at.cliente.nome ? at.cliente.nome : at.cliente %></td>
+            <td><%= at.tipoAtendimento %></td>
+            <td><%= at.status %></td>
+            <td><%= at.assunto %></td>
+            <td>
+              <!-- Remova ou comente esta parte -->
+              <!--
+              <form action="/atendimentos/<%= at._id %>?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+              </form>
+              -->
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+  <a href="/atendimentos/agendar" class="btn btn-primary">Agendar Atendimento</a>
+</div>
+<%- include('../partials/footer') %>

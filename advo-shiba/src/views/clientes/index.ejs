@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2 class="mb-4">Clientes</h2>
+  <% if (clientes.length === 0) { %>
+    <div class="alert alert-info text-center">
+      Nenhum cliente cadastrado.
+    </div>
+  <% } else { %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% clientes.forEach(function(cli) { %>
+          <tr>
+            <td><%= cli.nome %></td>
+            <td><%= cli.telefone %></td>
+            <td><%= cli.email %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+  <a href="/clientes/cadastro" class="btn btn-primary">Cadastrar Cliente</a>
+</div>
+<%- include('../partials/footer') %>

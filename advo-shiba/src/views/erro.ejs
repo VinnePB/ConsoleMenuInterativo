@@ -1,0 +1,13 @@
+<!-- filepath: /workspaces/ConsoleMenuInterativo/sistema-agendamento-advocacia/src/views/erro.ejs -->
+<%- include('partials/header') %>
+<div class="container mt-5">
+  <div class="alert alert-danger text-center">
+    <h4>Ocorreu um erro!</h4>
+    <p><%= message %></p>
+    <% if (error && error.message) { %>
+      <pre><%= error.message %></pre>
+    <% } %>
+  </div>
+  <a href="/" class="btn btn-primary">Voltar para o início</a>
+</div>
+<%- include('partials/footer') %>

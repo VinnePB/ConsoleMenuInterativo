@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2 class="mb-4">Advogados</h2>
+  <% if (advogados.length === 0) { %>
+    <div class="alert alert-info text-center">
+      Nenhum advogado cadastrado.
+    </div>
+  <% } else { %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% advogados.forEach(function(advogado) { %>
+          <tr>
+            <td><%= advogado.nome %></td>
+            <td><%= advogado.email %></td>
+            <td><%= advogado.telefone %></td>
+            <td>
+              <form action="/advogados/<%= advogado._id %>?_method=DELETE" method="POST">
+                <button type="submit">Remover</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+  <a href="/advogados/cadastro" class="btn btn-primary">Cadastrar Advogado</a>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fila de Atendimentos</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <div class="container mt-5">
+        <h1>Fila de Atendimentos</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Advogado</th>
+                    <th>Cliente</th>
+                    <th>Assunto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% atendimentos.forEach(atendimento => { %>
+                    <tr>
+                        <td><%= atendimento.data ? new Date(atendimento.data).toLocaleDateString('pt-BR') : '' %></td>
+                        <td><%= atendimento.hora %></td>
+                        <td><%= atendimento.advogado ? atendimento.advogado.nome : '' %></td>
+                        <td><%= atendimento.cliente ? atendimento.cliente.nome : '' %></td>
+                        <td><%= atendimento.assunto || 'Trabalhista' %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('../partials/footer') %>
+</body>
+</html>

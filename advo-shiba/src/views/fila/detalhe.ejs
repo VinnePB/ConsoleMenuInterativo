@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2>Chamado <%= atendimento._id.toString().slice(-3) %> - <%= atendimento.assunto %></h2>
+  <ul class="list-group mb-4">
+    <li class="list-group-item"><strong>Data:</strong> <%= atendimento.data ? new Date(atendimento.data).toLocaleDateString('pt-BR') : '' %></li>
+    <li class="list-group-item"><strong>Hora:</strong> <%= atendimento.hora %></li>
+    <li class="list-group-item"><strong>Advogado:</strong> <%= atendimento.advogado ? atendimento.advogado.nome : '' %></li>
+    <li class="list-group-item"><strong>Cliente:</strong> <%= atendimento.cliente ? atendimento.cliente.nome : '' %></li>
+    <li class="list-group-item"><strong>Assunto:</strong> <%= atendimento.assunto || atendimento.tipoAtendimento %></li>
+    <li class="list-group-item"><strong>Status:</strong> <%= atendimento.status %></li>
+  </ul>
+  <% if (atendimento.status === 'Aguardando atendimento' || atendimento.status === 'Em atendimento') { %>
+    <form action="/fila/<%= atendimento._id %>/encerrar" method="POST">
+      <div class="form-group">
+        <label for="motivo">Motivo do Encerramento:</label>
+        <textarea class="form-control" id="motivo" name="motivo" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-danger mt-3">Encerrar Atendimento</button>
+    </form>
+  <% } else { %>
+    <div class="alert alert-info">Atendimento já encerrado.</div>
+    <% if (atendimento.motivoEncerramento) { %>
+      <div><strong>Motivo:</strong> <%= atendimento.motivoEncerramento %></div>
+    <% } %>
+  <% } %>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2>Cadastro de Usuário</h2>
+  <form action="/usuarios/cadastro" method="POST">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" name="nome" required>
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail:</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="senha">Senha:</label>
+      <input type="password" class="form-control" id="senha" name="senha" required>
+    </div>
+    <div class="form-group">
+      <label for="tipo">Tipo de Usuário:</label>
+      <select class="form-control" id="tipo" name="tipo" required>
+        <option value="funcionario">Funcionário</option>
+        <option value="admin">Administrador</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+  </form>
+</div>
+<%- include('../partials/footer') %>

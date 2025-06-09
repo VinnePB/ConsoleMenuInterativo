@@ -1,0 +1,65 @@
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2>Chamados Abertos</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Assunto</th>
+        <th>Cliente</th>
+        <th>Advogado</th>
+        <th>Status</th>
+        <th>Detalhes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% abertos.forEach(atendimento => { %>
+        <tr>
+          <td><%= atendimento.data ? new Date(atendimento.data).toLocaleDateString('pt-BR') : '' %></td>
+          <td><%= atendimento.hora %></td>
+          <td><%= atendimento.assunto %></td>
+          <td><%= atendimento.cliente ? atendimento.cliente.nome : '' %></td>
+          <td><%= atendimento.advogado ? atendimento.advogado.nome : '' %></td>
+          <td><%= atendimento.status %></td>
+          <td>
+            <a href="/fila/<%= atendimento._id %>">Ver detalhes</a>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <h2 class="mt-5">Chamados Encerrados</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Assunto</th>
+        <th>Cliente</th>
+        <th>Advogado</th>
+        <th>Status</th>
+        <th>Motivo Encerramento</th>
+        <th>Detalhes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% fechados.forEach(atendimento => { %>
+        <tr>
+          <td><%= atendimento.data ? new Date(atendimento.data).toLocaleDateString('pt-BR') : '' %></td>
+          <td><%= atendimento.hora %></td>
+          <td><%= atendimento.assunto %></td>
+          <td><%= atendimento.cliente ? atendimento.cliente.nome : '' %></td>
+          <td><%= atendimento.advogado ? atendimento.advogado.nome : '' %></td>
+          <td><%= atendimento.status %></td>
+          <td><%= atendimento.motivoEncerramento %></td>
+          <td>
+            <a href="/fila/<%= atendimento._id %>">Ver detalhes</a>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

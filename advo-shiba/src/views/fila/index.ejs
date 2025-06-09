@@ -1,0 +1,28 @@
+<!-- filepath: /workspaces/ConsoleMenuInterativo/advo-shiba/src/views/fila/index.ejs -->
+<%- include('../partials/header') %>
+<div class="container mt-5">
+    <h1>Fila de Atendimentos</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Assunto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% atendimentos.forEach(atendimento => { %>
+                <tr>
+                    <td><%= atendimento.data ? new Date(atendimento.data).toLocaleDateString('pt-BR') : '' %></td>
+                    <td><%= atendimento.hora %></td>
+                    <td>
+                      <a href="/fila/<%= atendimento._id %>">
+                        <%= atendimento.assunto || atendimento.tipoAtendimento %>
+                      </a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+<%- include('../partials/footer') %>
