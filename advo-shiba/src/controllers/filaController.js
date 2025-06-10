@@ -20,7 +20,7 @@ async function detalharAtendimento(req, res) {
       .populate('advogado')
       .populate('cliente');
     if (!atendimento) {
-      return res.status(404).render('erro', { message: 'Atendimento não encontrado' });
+      return res.status(404).render('erro', { message: 'Atendimento não encontrado', error: null });
     }
     res.render('fila/detalhe', { atendimento });
   } catch (err) {

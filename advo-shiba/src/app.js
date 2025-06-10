@@ -34,12 +34,14 @@ const advogadosRoutes = require('./routes/advogados');
 const clientesRoutes = require('./routes/clientes');
 const atendimentosRoutes = require('./routes/atendimentos');
 const filaRoutes = require('./routes/fila');
+const usuariosRoutes = require('./routes/usuarios'); // ADICIONE ESTA LINHA
 
 // Uso das rotas
 app.use('/advogados', advogadosRoutes);
 app.use('/clientes', clientesRoutes);
 app.use('/atendimentos', atendimentosRoutes);
 app.use('/fila', filaRoutes);
+app.use('/usuarios', usuariosRoutes); // ADICIONE ESTA LINHA
 
 // Rota inicial
 app.get('/', (req, res) => {
@@ -60,3 +62,33 @@ mongoose.connect('mongodb://127.0.0.1:27017/sistema_agendamento')
     }).catch((err) => {
         console.error('Erro ao conectar ao MongoDB:', err);
     });
+
+// Adicione no início do app.js ou crie um seedAdmin.js
+const Usuario = require('./models/usuario');
+
+async function seedAdmin() {
+  let existe = await Usuario.findOne({ nome: 'Suporte1' });
+  if (!existe) {
+    await Usuario.create({
+      usuario: 'suporte1',
+      nome: 'Suporte1',
+      sobrenome: 'Administrador',
+      email: 'suporte@exemplo.com',
+      telefone: '11999999999',
+      matricula: 'ADM001',
+      senha: '@00123', // texto puro
+      tipo: 'admin'
+    });
+    console.log('Usuário admin padrão criado!');
+  } else {
+    existe.usuario = 'suporte1';
+    existe.sobrenome = 'Administrador';
+    existe.telefone = '11999999999';
+    existe.matricula = 'ADM001';
+    existe.senha = '@00123'; // texto puro
+    existe.tipo = 'admin';
+    await existe.save();
+    console.log('Senha do admin Suporte1 atualizada!');
+  }
+}
+seedAdmin();

@@ -1,18 +1,136 @@
 <%- include('partials/header') %>
-<div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
-  <div class="card p-4 shadow" style="min-width: 320px;">
-    <h2 class="mb-4 text-center">Login</h2>
-    <form action="/usuarios/login" method="POST">
-      <div class="form-group mb-3">
-        <label for="email">E-mail:</label>
-        <input type="email" class="form-control" id="email" name="email" required autofocus>
+<div class="container py-5">
+  <% if (usuario && usuario.tipo === 'admin') { %>
+    <div class="row g-4 justify-content-center">
+      <!-- Cadastrar Novo Funcionário -->
+      <div class="col-12 col-md-4">
+        <a href="/usuarios/cadastro" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-user-plus fa-3x mb-3 text-primary"></i>
+              <h5 class="card-title">Cadastrar Novo Funcionário</h5>
+              <p class="card-text">Crie perfis de funcionários ou advogados com permissões específicas.</p>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="form-group mb-4">
-        <label for="senha">Senha:</label>
-        <input type="password" class="form-control" id="senha" name="senha" required>
+      <!-- Desativar ou Remover Funcionário -->
+      <div class="col-12 col-md-4">
+        <a href="/usuarios/remover" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-user-slash fa-3x mb-3 text-danger"></i>
+              <h5 class="card-title">Desativar ou Remover Funcionário</h5>
+              <p class="card-text">Desative ou remova funcionários do sistema.</p>
+            </div>
+          </div>
+        </a>
       </div>
-      <button type="submit" class="btn btn-primary w-100">Entrar</button>
-    </form>
-  </div>
+      <!-- Advogados -->
+      <div class="col-12 col-md-4">
+        <a href="/advogados" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-balance-scale fa-3x mb-3 text-success"></i>
+              <h5 class="card-title">Advogados</h5>
+              <p class="card-text">Gerencie advogados cadastrados.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Clientes -->
+      <div class="col-12 col-md-4">
+        <a href="/clientes" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-users fa-3x mb-3 text-info"></i>
+              <h5 class="card-title">Clientes</h5>
+              <p class="card-text">Visualize e cadastre clientes.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Atendimentos -->
+      <div class="col-12 col-md-4">
+        <a href="/atendimentos" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-calendar-check fa-3x mb-3 text-warning"></i>
+              <h5 class="card-title">Atendimentos</h5>
+              <p class="card-text">Gerencie agendamentos e atendimentos.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Fila -->
+      <div class="col-12 col-md-4">
+        <a href="/fila" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-list-ol fa-3x mb-3 text-secondary"></i>
+              <h5 class="card-title">Fila</h5>
+              <p class="card-text">Consulte a fila de atendimentos.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  <% } else if (usuario && usuario.tipo === 'funcionario') { %>
+    <div class="row g-4 justify-content-center">
+      <!-- Clientes -->
+      <div class="col-12 col-md-4">
+        <a href="/clientes" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-users fa-3x mb-3 text-info"></i>
+              <h5 class="card-title">Clientes</h5>
+              <p class="card-text">Visualize e cadastre clientes.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Atendimentos -->
+      <div class="col-12 col-md-4">
+        <a href="/atendimentos" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-calendar-check fa-3x mb-3 text-warning"></i>
+              <h5 class="card-title">Atendimentos</h5>
+              <p class="card-text">Gerencie agendamentos e atendimentos.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Fila -->
+      <div class="col-12 col-md-4">
+        <a href="/fila" class="text-decoration-none">
+          <div class="card text-center shadow h-100">
+            <div class="card-body">
+              <i class="fas fa-list-ol fa-3x mb-3 text-secondary"></i>
+              <h5 class="card-title">Fila</h5>
+              <p class="card-text">Consulte a fila de atendimentos.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  <% } else { %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
+      <div class="card p-4 shadow" style="min-width: 320px;">
+        <h2 class="mb-4 text-center">Login</h2>
+        <form action="/usuarios/login" method="POST">
+          <div class="form-group mb-3">
+            <label for="email">E-mail ou Nome de Usuário:</label>
+            <input type="text" class="form-control" id="email" name="email" required autofocus>
+          </div>
+          <div class="form-group mb-4">
+            <label for="senha">Senha:</label>
+            <input type="password" class="form-control" id="senha" name="senha" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        </form>
+      </div>
+    </div>
+  <% } %>
 </div>
 <%- include('partials/footer') %>

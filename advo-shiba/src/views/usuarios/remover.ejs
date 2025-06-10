@@ -1,0 +1,37 @@
+<!-- filepath: /workspaces/ConsoleMenuInterativo/advo-shiba/src/views/usuarios/remover.ejs -->
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2>Desativar ou Remover Funcionário</h2>
+  <% if (funcionarios.length === 0) { %>
+    <div class="alert alert-info text-center">Nenhum funcionário para remover.</div>
+  <% } else { %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Tipo</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% funcionarios.forEach(f => { %>
+          <tr>
+            <td><%= f.nome %></td>
+            <td><%= f.email %></td>
+            <td><%= f.tipo %></td>
+            <td>
+              <form action="/usuarios/remover/<%= f._id %>" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este funcionário?');" style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+              </form>
+              <form action="/usuarios/promover/<%= f._id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-warning btn-sm">Promover a Admin</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</div>
+<%- include('../partials/footer') %>

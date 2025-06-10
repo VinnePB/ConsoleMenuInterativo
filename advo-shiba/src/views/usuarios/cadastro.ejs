@@ -1,14 +1,29 @@
 <%- include('../partials/header') %>
 <div class="container mt-5">
   <h2>Cadastro de Usuário</h2>
+  <% if (typeof erro !== 'undefined' && erro) { %>
+    <div class="alert alert-danger text-center"><%= erro %></div>
+  <% } %>
   <form action="/usuarios/cadastro" method="POST">
+    <div class="form-group">
+      <label for="usuario">Nome de Usuário:</label>
+      <input type="text" class="form-control" id="usuario" name="usuario" required placeholder="ex: fulano.ciclano">
+    </div>
     <div class="form-group">
       <label for="nome">Nome:</label>
       <input type="text" class="form-control" id="nome" name="nome" required>
     </div>
     <div class="form-group">
-      <label for="email">E-mail:</label>
-      <input type="email" class="form-control" id="email" name="email" required>
+      <label for="sobrenome">Sobrenome:</label>
+      <input type="text" class="form-control" id="sobrenome" name="sobrenome" required>
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail: <small class="text-muted">(opcional)</small></label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Se não possuir, deixe em branco">
+    </div>
+    <div class="form-group">
+      <label for="telefone">Telefone:</label>
+      <input type="text" class="form-control" id="telefone" name="telefone" required placeholder="+55 (11) 9 1234-5678">
     </div>
     <div class="form-group">
       <label for="senha">Senha:</label>
